@@ -76,8 +76,8 @@ If any are missing, ask your instructor for help.
 Make an initial commit so we have a clean starting point:
 
 ```bash
-git add -A
-git commit -m "chore: initialize project with uv"
+git add -A  # tell git to track all files
+git commit -m "chore: initialize project with uv" # commit to local git repo
 ```
 
 ---
@@ -112,7 +112,7 @@ Claude will likely recommend the `requests` library. Push back:
 ```
 Do not create the PRD or write code yet.
 
-What are the alternatives to your suggested python package? This project is a simple starter example for a larger project.
+What are the alternatives to your suggested Python package? This project is a simple starter example for a larger project.
 ```
 
 Claude should walk you through alternatives like `httpx`, `aiohttp`, and `urllib3`, with trade-offs for each. This is a key habit: **don't accept the first answer without exploring alternatives.**
@@ -142,13 +142,13 @@ If you like, hit the microphone on Claude Desktop (lower right) or type /voice o
 
 ### Step 3.1: Generate the PRD
 
-Once you've answered all the questions, run:
+All commands/skills accept an optional argument.
 
 ```
-/create-prd-simple
+/create-prd-simple use AskUserQuestion for multiple-choice options.
 ```
 
-Claude may ask you questions. If Claude offers multiple-choice options, pick the one you prefer. If none fit, type your own answer. **Every question you answer is removing an assumption that would otherwise lead to wrong code.**
+Pick the options you prefer. If none fit, type your own answer. **Every question you answer is removing an assumption that would otherwise lead to wrong code.**
 
 Claude will synthesize your conversation into a short, focused PRD and save it as `PRD.md`. This simplified version covers just the essentials: what you're building, features, tech stack, and success criteria.
 
@@ -213,7 +213,7 @@ The PRD looks good. Let's plan the implementation. I want to build the weather
 lookup tool as described in the PRD. Let's think through exactly how to structure 
 the code, handle errors, and test it. Don't create the plan or code yet.
 
-Please interview me. I would like a multiple choice questions.
+Please interview me (AskUserQuestion). I would like a multiple choice questions.
 ```
 
 Have a brief conversation about implementation details. Claude might raise points about:

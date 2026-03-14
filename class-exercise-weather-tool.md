@@ -67,7 +67,7 @@ Using the Code tab of Claude Desktop (while in the weather-tool directory), ask,
 | `/commit` | Make a standardized git commit |
 | `/simplify` | Automated code quality pass |
 
-If any are missing, ask your instructor for help.
+If any are missing, ask or email me (ai_class@fastmail.com) for help.
 
 ### Step 1.5: Make an initial commit
 
@@ -145,7 +145,7 @@ If you like, hit the microphone on Claude Desktop (lower right) or type /voice o
 All commands/skills accept an optional argument.
 
 ```
-/create-prd-simple use AskUserQuestion for multiple-choice options.
+/create-prd-simple use AskUserQuestion for multiple-choice options
 ```
 
 Pick the options you prefer. If none fit, type your own answer. **Every question you answer is removing an assumption that would otherwise lead to wrong code.**
@@ -192,7 +192,9 @@ Commit everything:
 
 ## Part 5: Planning the Feature with /plan-feature-simple (15 minutes)
 
-Now we'll do the "Plan" step of the loop. **Start a fresh Claude Code conversation** — this is the context reset that keeps things focused.
+Now we'll do the "Plan" step of the loop. 
+
+**Start a fresh Claude Code conversation** — this is the context reset that keeps things focused.
 
 ### Step 5.1: Prime Claude
 
@@ -238,24 +240,11 @@ Claude will create a short implementation plan and save it to `.agents/plans/`. 
 
 **Read the plan.** Make sure the steps make sense and the testing approach is solid. If something looks off, tell Claude and have it revise the plan.
 
-### Step 5.4: Decide on Testing
-
-```code Add pytest tests that call the real Open-Meteo API — no mocking. 
-Add pytest tests that call the real Open-Meteo API — no mocking. 
-Test geocoding, weather fetching, and the error case for a nonexistent city.
-```
-
-When you're satisfied, commit the plan:
-
-```
-/commit
-```
-
----
-
 ## Part 6: Implementation with /execute (15 minutes)
 
-This is the "Implement" step. **Start another fresh Claude Code conversation** — another context reset.
+This is the "Implement" step. 
+
+**Start another fresh Claude Code conversation** — another context reset.
 
 ### Step 6.1: Execute the plan
 

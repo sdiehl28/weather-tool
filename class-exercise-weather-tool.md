@@ -26,24 +26,34 @@ In this exercise, you'll build a simple command-line weather lookup tool using P
 
 ## Part 1: Project Setup (10 minutes)
 
-### Step 1.1: Create the project folder
+### Step 1.1: Clone the starter repo
+
+From your `~/Projects` directory:
 
 ```bash
-mkdir weather-tool
+git clone https://github.com/sdiehl28/weather-tool.git
 cd weather-tool
-uv init # initial git and more
-uv run python --version # create the .venv virtual environment folder
 ```
 
-### Step 1.2: Set up the plans directory
+This gives you the Claude Code skills (under `.claude/skills/`) and this exercise document.
 
-The Claude Code skills (`/create-prd-simple`, `/prime`, `/plan-feature-simple`, etc.) are already installed in your project under `.claude/skills/`. The only folder we need to create manually is where implementation plans will be saved:
+### Step 1.2: Initialize the Python project
+
+```bash
+uv init # sets up pyproject.toml and git
+mv main.py weather.py # uv init creates an unintuitive filename
+uv run python --version # creates the .venv virtual environment folder
+```
+
+### Step 1.3: Set up the plans directory
+
+The only folder we need to create manually is where implementation plans will be saved:
 
 ```bash
 mkdir -p .agents/plans
 ```
 
-### Step 1.3: Verify skills are available
+### Step 1.4: Verify skills are available
 
 Using the Code tab of Claude Desktop (while in the weather-tool directory), ask, "What skills are available to this project?" Or open Claude Code (terminal) in your project directory and type `/` to see the list of available skills. You should see these skills that we'll use during the exercise:
 
@@ -59,15 +69,15 @@ Using the Code tab of Claude Desktop (while in the weather-tool directory), ask,
 
 If any are missing, ask your instructor for help.
 
-### Step 1.4: Make an initial commit
+### Step 1.5: Make an initial commit
 
-`uv init` already ran in Step 1.1 and created `pyproject.toml` and a basic project structure. We'll let Claude figure out the dependencies during implementation.
+`uv init` already ran in Step 1.2 and created `pyproject.toml` and a basic project structure. We'll let Claude figure out the dependencies during implementation.
 
 Make an initial commit so we have a clean starting point:
 
 ```bash
 git add -A
-git commit -m "chore: initialize project with AI layer and uv"
+git commit -m "chore: initialize project with uv"
 ```
 
 ---
@@ -90,7 +100,7 @@ city names gracefully. Keep it simple — a single script is fine. For the API,
 only consider free weather APIs that don't require an API key or have restrictive
 rate limits. Suggest which Python packages I should use.
 
-Do not write any code yet. This is the research phase.
+Do not create the PRD or write code yet. This is the research phase.
 ```
 
 Claude will suggest an API and a Python HTTP library. Read the suggestions — but don't just accept them.
@@ -100,9 +110,9 @@ Claude will suggest an API and a Python HTTP library. Read the suggestions — b
 Claude will likely recommend the `requests` library. Push back:
 
 ```
-Don't write the script yet.
-What are the alternatives to requests? This project is a simple starter example
-for a larger project.
+Do not create the PRD or write code yet.
+
+What are the alternatives to your suggested python package? This project is a simple starter example for a larger project.
 ```
 
 Claude should walk you through alternatives like `httpx`, `aiohttp`, and `urllib3`, with trade-offs for each. This is a key habit: **don't accept the first answer without exploring alternatives.**
@@ -112,12 +122,13 @@ Claude should walk you through alternatives like `httpx`, `aiohttp`, and `urllib
 Once you've seen the options, confirm your choices and ask Claude to summarize:
 
 ```
-Good. Let's go with httpx and Open-Meteo. Summarize what we've decided so far —
+Good. Let's go with httpx + argparse, and Open-Meteo. 
+Summarize what we've decided so far —
 API choice, packages, and key behaviors — so I can use it as input for the next
-step. Do not write code.
-```
+step. 
 
-Claude will produce a clean summary of your decisions. **Save or copy this summary** — you'll feed it into the PRD step next.
+Do not create the PRD or write code yet.
+```
 
 > **What this phase teaches:** Explore before you commit. The research conversation helps you (1) discover options you didn't know about, (2) challenge default suggestions, and (3) checkpoint decisions in writing before they get baked into a formal plan. Changing your mind here costs nothing. Changing it after implementation costs real time.
 
@@ -129,33 +140,15 @@ Claude will produce a clean summary of your decisions. **Save or copy this summa
 
 If you like, hit the microphone on Claude Desktop (lower right) or type /voice on claude code cli.
 
-### Step 3.1: Feed in your research and start the PRD conversation
-
-Take the summary Claude produced at the end of Part 2 and use it as the starting point. Tell Claude you want to discuss details before creating the PRD:
-
-```
-Based on the research summary above, I'd like to turn this into a PRD. But first,
-ask me questions so we can get aligned on the details before creating it.
-```
-
-### Step 3.2: Answer Claude's questions
-
-Claude should come back with several questions. These might include:
-- Should the tool handle ambiguous city names (e.g., "Portland" matches Portland OR and Portland ME)?
-- What temperature units — Celsius, Fahrenheit, or let the user choose?
-- Should it show a multi-day forecast or just current conditions?
-- How should errors be displayed (city not found, API down, no internet)?
-- Should results be plain text or formatted with colors?
-
-Answer each question. If Claude offers multiple-choice options, pick the one you prefer. If none fit, type your own answer. **Every question you answer is removing an assumption that would otherwise lead to wrong code.**
-
-### Step 3.3: Generate the PRD
+### Step 3.1: Generate the PRD
 
 Once you've answered all the questions, run:
 
 ```
 /create-prd-simple
 ```
+
+Claude may ask you questions. If Claude offers multiple-choice options, pick the one you prefer. If none fit, type your own answer. **Every question you answer is removing an assumption that would otherwise lead to wrong code.**
 
 Claude will synthesize your conversation into a short, focused PRD and save it as `PRD.md`. This simplified version covers just the essentials: what you're building, features, tech stack, and success criteria.
 
@@ -209,7 +202,7 @@ In the new conversation, run:
 /prime
 ```
 
-Claude will explore your project, read the PRD and CLAUDE.md, check the git log, and output a summary of its understanding. Read the summary and confirm it looks right.
+Claude will explore your project, read the PRD and CLAUDE.md, check the git log, and output a summary of its understanding. **Read the summary and confirm it looks right.**
 
 ### Step 5.2: Discuss the implementation
 
@@ -218,7 +211,9 @@ Tell Claude you want to plan the first (and in this case, only) phase. Something
 ```
 The PRD looks good. Let's plan the implementation. I want to build the weather 
 lookup tool as described in the PRD. Let's think through exactly how to structure 
-the code, handle errors, and test it. Don't code anything yet.
+the code, handle errors, and test it. Don't create the plan or code yet.
+
+Please interview me. I would like a multiple choice questions.
 ```
 
 Have a brief conversation about implementation details. Claude might raise points about:
@@ -243,7 +238,14 @@ Claude will create a short implementation plan and save it to `.agents/plans/`. 
 
 **Read the plan.** Make sure the steps make sense and the testing approach is solid. If something looks off, tell Claude and have it revise the plan.
 
-Commit the plan:
+### Step 5.4: Decide on Testing
+
+```code Add pytest tests that call the real Open-Meteo API — no mocking. 
+Add pytest tests that call the real Open-Meteo API — no mocking. 
+Test geocoding, weather fetching, and the error case for a nonexistent city.
+```
+
+When you're satisfied, commit the plan:
 
 ```
 /commit
@@ -300,6 +302,12 @@ Try a few cities:
 - A city with a common name (Portland, Springfield) — does it handle disambiguation?
 - A city that doesn't exist — does it show a helpful error?
 - No input at all — does it show usage instructions?
+
+### Step 6.3: Run the tests
+
+```bash
+uv run pytest
+```
 
 ---
 

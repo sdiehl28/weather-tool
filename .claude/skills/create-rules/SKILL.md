@@ -92,7 +92,7 @@ Identify files that are important to understand:
 
 ### Create CLAUDE.md
 
-Use the template at `.agents/CLAUDE-template.md` as a starting point.
+Use the template at `assets/CLAUDE-template.md` as a starting point.
 
 **Output path**: `CLAUDE.md` (project root)
 
